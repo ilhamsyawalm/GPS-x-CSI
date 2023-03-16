@@ -37,7 +37,6 @@ class Customers(models.Model):
 class HelpdeskTickets(models.Model):
     _inherit = 'helpdesk.ticket'
     
-    csi_new = fields.Char('CSI New', store=True)
     csi_old = fields.Char("CSI", store=True, compute='compute_csi')
         
     @api.depends('partner_id')
