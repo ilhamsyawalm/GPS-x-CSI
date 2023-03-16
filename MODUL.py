@@ -2,7 +2,6 @@ from odoo import api, fields, models
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
-
     csi_new = fields.Char("CSI New", store=True, readonly=False)
     csi_old = fields.Char(string='CSI', store=True, readonly=False, compute='compute_csi_old')
 
@@ -31,12 +30,10 @@ class ProjectTask(models.Model):
 
 class Customers(models.Model):
     _inherit = 'res.partner'
-    
     csi_old = fields.Char('CSI Old', store=True)
 
 class HelpdeskTickets(models.Model):
     _inherit = 'helpdesk.ticket'
-    
     csi_old = fields.Char("CSI", store=True, compute='compute_csi')
         
     @api.depends('partner_id')
