@@ -4,11 +4,14 @@
     "website": "http://",
     "version": "1.0.0",
     "depends": [
-        "contacts", "base", "helpdesk", "project", 
+        "contacts", "base", "helpdesk", "project",
     ],
-    "data":[
+    "data": [
         "GPS.xml"
     ],
     "licence": "LGPL-3",
-    "installable": True
+    "installable": True,
+    'auto_install': False,
+    'application': True,
+
 }
