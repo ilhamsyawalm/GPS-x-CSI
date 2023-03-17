@@ -15,23 +15,21 @@ class ProjectTask(models.Model):
             else:
                 task.csi_old = False
 
-
-def update_partner_location(self):
-    tasks = self.search([('partner_id', '!=', False),
-                        ('x_longitude', '!=', False), ('x_latitude', '!=', False)])
-    partners = tasks.mapped('partner_id')
-    partners.write({
-        'partner_longitude': 0.00,
-        'partner_latitude': 0.00,
-    })
-    tasks_by_partner = {task.partner_id: task for task in tasks}
-    for partner in partners:
-        task = tasks_by_partner.get(partner)
-        if task:
-            partner.write({
-                'partner_longitude': task.x_longitude,
-                'partner_latitude': task.x_latitude,
-            })
+    def update_partner_location(self):
+        partners = self.env['res.partner'].search([])
+        for partner in partners:
+            task = self.search([('partner_id', '=', partner.id)],
+                               limit=1, order='write_date desc')
+            if task:
+                partner.write({
+                    'partner_longitude': 0.00,
+                    'partner_latitude': 0.00,
+                })
+                if task.x_longitude and task.x_latitude:
+                    partner.write({
+                        'partner_longitude': task.x_longitude,
+                        'partner_latitude': task.x_latitude,
+                    })
 
 
 class Customers(models.Model):
