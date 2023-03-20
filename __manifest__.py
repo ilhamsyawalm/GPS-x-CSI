@@ -4,7 +4,7 @@
     "website": "https://ilhamsyawalm.github.io/",
     "version": "1.0.0",
     "depends": [
-        "contacts", "base", "helpdesk", "project",
+        "contacts", "helpdesk", "project",
     ],
     "data": [
         "GPS.xml"
